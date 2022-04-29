@@ -11,15 +11,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'}
 ]
 
-if 'RDS_DB_NAME' in os.environ:
+if config('RDS_DB_NAME'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
+            'NAME': config('RDS_DB_NAME'),
+            'USER': config('RDS_USERNAME'),
+            'PASSWORD': config('RDS_PASSWORD'),
+            'HOST': os.environ('RDS_HOSTNAME'),
+            'PORT': os.environ('RDS_PORT'),
             'OPTIONS': {
                 'charset': 'utf8'  # This is the important line
             },
