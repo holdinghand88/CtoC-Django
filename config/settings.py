@@ -65,7 +65,9 @@ TIME_ZONE = 'Asia/Tokyo'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
 # Static files (CSS, JavaScript, Images)
 if ENVIRONMENT == 'local':
     STATIC_URL = '/static/'
@@ -118,7 +120,8 @@ EMAIL_USE_SSL = False
 # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
 
 if ENVIRONMENT == 'production':
-    DEBUG = True
+    PRODUCTION = True
+    DEBUG = False
     ALLOWED_HOSTS = ['*', 'terraceatworld.net']
 
     AUTH_PASSWORD_VALIDATORS = [
@@ -170,6 +173,7 @@ if ENVIRONMENT == 'production':
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
     
 else:
+    PRODUCTION = False
     DEBUG = True
     ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
     HOST_NAME = 'http://localhost:8000'
