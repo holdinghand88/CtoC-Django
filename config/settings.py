@@ -67,7 +67,7 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
+
 # Static files (CSS, JavaScript, Images)
 if ENVIRONMENT == 'local':
     STATIC_URL = '/static/'
