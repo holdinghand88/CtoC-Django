@@ -1,10 +1,11 @@
 import os
 from decouple import config
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # This configuration defines in which environment the application is going to run. Possible values: local, development, production
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='local')
+
 if ENVIRONMENT == 'production':
     SECRET_KEY = os.environ.get('SECRET_KEY')
 else:
@@ -66,14 +67,14 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Static files (CSS, JavaScript, Images)
 if ENVIRONMENT == 'local':
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 # Auth
@@ -118,6 +119,9 @@ EMAIL_USE_SSL = False
 
 # EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+def show_toolbar(request):
+    return True
+
 
 if ENVIRONMENT == 'production':
     PRODUCTION = True
@@ -130,7 +134,7 @@ if ENVIRONMENT == 'production':
         {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
         {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'}
     ]
-    
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -144,7 +148,7 @@ if ENVIRONMENT == 'production':
             }
         }
     }
-    
+
     if "AWS_ACCESS_KEY_ID" in os.environ and "AWS_STORAGE_BUCKET_NAME" in os.environ:
         AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
         AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
@@ -163,15 +167,16 @@ if ENVIRONMENT == 'production':
         STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
         STATIC_URL = os.environ.get(
             'STATIC_URL', default=f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/')
-        MEDIA_URL = os.environ.get('MEDIA_URL', default=f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/')
+        MEDIA_URL = os.environ.get(
+            'MEDIA_URL', default=f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/')
         HOST_NAME = 'https://terraceatworld.net'
 
     STRIPE_PUBLIC_KEY = os.environ['STRIPE_LIVE_PUBLIC_KEY']
     STRIPE_SECRET_KEY = os.environ['STRIPE_LIVE_SECRET_KEY']
-    
+
     EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-    
+
 else:
     PRODUCTION = False
     DEBUG = True
@@ -199,11 +204,6 @@ else:
         'debug_toolbar.panels.signals.SignalsPanel',
         'debug_toolbar.panels.logging.LoggingPanel',
     ]
-
-
-    def show_toolbar(request):
-        return True
-
 
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
