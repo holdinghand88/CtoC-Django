@@ -11,29 +11,21 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'}
 ]
 
-if config('RDS_DB_NAME'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': config('RDS_DB_NAME'),
-            'USER': config('RDS_USERNAME'),
-            'PASSWORD': config('RDS_PASSWORD'),
-            'HOST': config('RDS_HOSTNAME'),
-            'PORT': config('RDS_PORT'),
-            'OPTIONS': {
-                'charset': 'utf8'  # This is the important line
-            },
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('RDS_DB_NAME'),
+        'USER': config('RDS_USERNAME'),
+        'PASSWORD': config('RDS_PASSWORD'),
+        'HOST': config('RDS_HOSTNAME'),
+        'PORT': config('RDS_PORT'),
+        'OPTIONS': {
+            'charset': 'utf8'  # This is the important line
+        },
     }
-    PRODUCTION = True
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
-        }
-    }
-    PRODUCTION = True
+}
+PRODUCTION = True
 
 if "AWS_ACCESS_KEY_ID" in os.environ and "AWS_STORAGE_BUCKET_NAME" in os.environ:
     AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
