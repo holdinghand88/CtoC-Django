@@ -1,6 +1,7 @@
 from .base import *
 
 DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
 ALLOWED_HOSTS = ['*', 'terraceatworld.net']
 
 AUTH_PASSWORD_VALIDATORS = [
