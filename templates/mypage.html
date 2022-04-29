@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load cart_template_tags %}
+{% block extra_head %}
+
+{% endblock extra_head %} 
+{% block content %}
+
+<main>
+  <div class="container m-fluid mt-3">
+    <div class="section--wrap flex align-end">
+        <h1 class="section--wrap--title title-btn">マイページ</h1>
+        <div class="line-full"></div>
+    </div>
+  </div>
+
+  <div class="container">
+      <div class="my-page-box-wrapper">
+          <div class="my-page-box">
+              <div class="my-page-box--top">
+                  <h1 class="my-page-box--top--title">{{ request.user.email }}様</h1>
+              </div>
+              <div class="my-page-box--bottom">
+                  <a href="{% url 'core:order-summary' %}" class="my-page-box--bottom--btn"><span class="badge red z-depth-1 mr-1">
+                    {{ request.user|cart_item_count }}
+                  </span><i class="fas fa-shopping-cart"></i>カート</a>
+                  <a href="{% url 'core:purchased' %}" class="my-page-box--bottom--btn">購入済み商品一覧</a>
+                  <a href="{% url 'core:card-detail' %}" class="my-page-box--bottom--btn">クレジットカード情報</a>
+                  <a href="{% url 'core:close-account' %}" class="my-page-box--bottom--btn">退会手続き</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+
+{% endblock content %}

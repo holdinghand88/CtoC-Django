@@ -1,0 +1,139 @@
+{% extends "base.html" %} {% block content %}
+{% load static %}
+
+<main>
+  <!--Hero section starts-->
+  <div class="hero m-flex m-direction-column-rev">
+    <div class="container flex align-center">
+        <div class="col">
+            <h1 class="hero--title">出会いは可能性を無限にする</h1>
+            <div class="hero--contents">
+                <p>
+                    terrace（テラス）は業界で活躍する方々が作成したレポートを<br>
+                    購入することができるプラットフォームです。</p>
+                    <ul>
+                        <li>・新規事業のアイデア探し</li>
+                        <li>・業界リサーチ</li>
+                        <li>・最新動向調査</li>
+                    </ul>
+    
+                <p>など、ご要望に合うレポートとの出会いを提供いたします。</p>      
+            </div>    
+        </div>
+        
+    </div>
+    <div class="col sp">
+        <img src="{% static 'images/hero-pc.png' %}" alt="">
+    </div>
+  </div>
+  <!--Hero section ends-->
+
+  <!--Section: Products v.3-->
+  <section class="mt-3">
+    <div class="container">
+      <div class="section--wrap flex align-end">
+        <h1 class="section--wrap--title title-btn">人気のレポート</h1>
+        <a href="{% url 'core:products' %}" class="section--wrap--more">全てのレポートを見る</a>
+      </div>
+      <div class="reports">
+        {% for item in object_list %}
+        <div class="report">
+          <div class="report-wrap">
+            <a href="{{ item.get_absolute_url }}">
+            <div class="report--thumb">        
+              <img src="{{ item.image.url }}" class="card-img-top" />
+            </div>
+            <div class="data-wrap">
+              <h3 class="data--title">カテゴリ</h3>
+              <h3 class="data--content">{{ item.get_category_display }}</h3>
+            </div>
+            <div class="data-wrap">
+              <h3 class="data--title">{{ item.title }}</h3>
+              <h3 class="data--content">号泣する準備はできていた</h3>
+            </div>
+            <div class="data-wrap">
+                <h3 class="data--title">出品者</h3>
+                <h3 class="data--content">江國香織</h3>
+            </div>
+            </a>
+          </div>          
+          <div class="selling-info">
+            <h2 class="selling-info-text">出品価格(税込)</h2>
+            <h2 class="selling-info-value">
+              {% if item.discount_price %}
+              <strong>¥{{ item.discount_price }} </strong>
+              {% else %}
+              <strong>¥{{ item.price }}</strong>
+              {% endif %}
+            </h2>
+          </div>      
+            
+          
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!--Section: Products v.3-->
+
+  <!--Section Features starts-->
+  <section id="feature">
+    <div class="title-wrapper sp">
+        <h1 class="feature-box--title m-inline-block">terrace<span>の特徴!</span></h1>
+    </div>
+    <div class="container">
+        <div class="feature-box">
+            <h1 class="feature-box--title pc">terrace<span>の特徴!</span></h1>
+
+            <div class="feature-box--features m-full-width">
+                <ul class="lists">
+
+                    <li class="list flex align-center m-flex-dir-col">
+                        <img src="{% static 'images/mob-feature-1.png' %}" alt="" class="list--thumb">
+                        <div class="list--content full-width">
+                            <h2 class="list--content--title">業界人が作成した専門的なレポートが手に入る</h2>
+                            <p class="list--content--para flex justify-center">企業が出すホワイトペーパーなどとは異なり、<br>
+                                個人がレポートを作成しているため偏ったレポートになりません</p>
+                        </div>
+                    </li>
+
+                    <li class="list flex align-center m-flex-dir-col m-flex-dir-rev-col">
+                        <div class="list--content full-width">
+                            <h2 class="list--content--title text-center">
+                                徹底したクオリティ
+                                <a class="list--content--btn sp m-inline-block">販売者申請はこちら</a>
+                            </h2>
+                            <p class="list--content--para flex justify-center align-start flex-dir-col">レポートの出品者は承認制を取っており、審査を突破した優秀な方のみです。<br>
+                                また出品されるレポートは Terrace運営が全てチェックを行い、<br>
+                                承認されたレポートのみ販売されます
+                                <a class="list--content--btn pc">販売者申請はこちら</a>
+                            </p>
+                        </div>
+                        <img src="{% static 'images/mob-feature-2.png' %}" alt="" class="list--thumb">
+                    </li>
+
+                    <li class="list flex align-center m-flex-dir-col">
+                        <img src="{% static 'images/mob-feature-3.png' %}" alt="" class="list--thumb">
+                        <div class="list--content full-width">
+                            <h2 class="list--content--title text-center">
+                                特別オファー
+                                <a class="list--content--btn sp m-inline-block">特別オファー申請はこちら</a>
+                            </h2>
+                            <p class="list--content--para flex justify-center align-start flex-dir-col">「このタイトルでこの人にレポート作成を依頼したい！」を実現します。
+                                <a class="list--content--btn pc right">特別オファー申請はこちら</a>
+                            </p>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+  </section>
+  <!--Section Features ends-->
+  
+</main>
+
+{% endblock content %}

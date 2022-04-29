@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+{% block extra_head %}
+
+{% endblock extra_head %} 
+{% block content %}
+
+<main>
+    <div class="container m-fluid mt-3" >
+        <div class="section--wrap flex align-end">
+            <h1 class="section--wrap--title title-btn">カード情報変更完了</h1>
+            <div class="line-full"></div>
+        </div>
+        <div class="container">
+            <h1 class="box-title">クレジットカード情報の変更が完了しました</h1>
+        </div>
+       <div class="payment-box radius-orange-box">
+           <h1 class="payment-box-title text-center">マイページへ戻る</h1>
+            <div class="arrow-down flex">
+                <i class="fa fa-caret-down ma" aria-hidden="true"></i>
+            </div>
+            <div class="flex">
+                <a href="{% url 'core:mypage' %}" class="all-products">マイページ</a>
+            </div>
+       </div>
+   </div>
+</main>
+
+{% endblock content %}

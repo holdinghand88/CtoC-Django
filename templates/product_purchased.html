@@ -1,0 +1,83 @@
+{% extends "base.html" %} 
+{% block content %}
+{% load static %}
+<main class="mt-5 pt-4">
+    <section class="cart">
+        <div class="container m-fluid mt-3">
+            <div class="section--wrap flex align-end">
+                <h1 class="section--wrap--title title-btn">購入済み商品一覧</h1>
+                <div class="line-full"></div>
+            </div>
+
+            <div class="cart-starts full-width-all purchased">
+                <div class="reports block">
+                    <!--Report starts-->
+                    <div class="report heading pc">
+                        <div class="report-wrap">
+                            <div class="report--thumb">
+                                <h3 class="data--title">商品詳細</h3>                                                                
+                            </div>
+                            <div class="report-content">                                
+                                <div class="data-wrap">
+                                    <h3 class="data--title">カテゴリ</h3>                                    
+                                </div>
+                                <div class="data-wrap">
+                                    <h3 class="data--title">商品タイトル</h3>
+                                </div>
+                                <div class="data-wrap">
+                                    <h3 class="data--title">出品者</h3>
+                                </div>
+                                <div class="data-wrap">
+                                    <h3 class="data--title">購入価格(税込)</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Report starts-->
+                    {% for order_item in object_list %}
+                    <div class="report">
+                        <div class="report-wrap">
+                            <div class="report--thumb">
+                                <a href="{{order_item.item.get_absolute_url}}"><img src="{{ order_item.item.image.url }}" alt=""></a>
+                                
+                            </div>
+                            <div class="report-content">
+                                <div class="data-wrap">
+                                    <h3 class="data--title">カテゴリ</h3>
+                                    <h3 class="data--content">{{ order_item.item.category.name }}</h3>
+                                </div>
+                                <div class="data-wrap">
+                                    <h3 class="data--title">タイトル</h3>
+                                    <a href="{{order_item.item.get_absolute_url}}"><h3 class="data--content">{{ order_item.item.title }}</h3></a>
+                                </div>
+                                <div class="data-wrap">
+                                    <h3 class="data--title">出品者</h3>
+                                    {% if item.seller_name %}
+                                    <h3 class="data--content">{{ order_item.item.seller_name }}</h3>
+                                    {% endif %}
+                                </div>
+                                <div class="data-wrap">
+                                    <h3 class="data--title">出品価格</h3>
+                                    <h3 class="data--content">
+                                        {% if order_item.item.discount_price %}
+                                        <strong>¥{{ order_item.item.discount_price }} </strong>
+                                        {% else %}
+                                        <strong>¥{{ order_item.item.price }}</strong>
+                                        {% endif %}
+                                    </h3>
+                                    <a href="{{order_item.item.get_absolute_url}}" class="btn-dlt sp">商品詳細</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!--Report ends-->
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

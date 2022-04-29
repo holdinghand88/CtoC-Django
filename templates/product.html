@@ -1,0 +1,133 @@
+{% extends "base.html" %} 
+{% block content %}
+{% load static %}
+<main class="mt-5 pt-4">
+  <div class="container m-fluid mt-3">
+    <div class="section--wrap flex align-end">
+        <h2 class="section--wrap--title title-btn">カテゴリ</h2>
+        <a href="/products?category_id={{object.category.id}}" class="section--wrap--more">{{ object.category.name }}</a>
+        {% for sub_category in object.subcategory.all %}
+        <a href="/products?subcategory_id={{sub_category.id}}" class="section--wrap--more">/ {{ sub_category.name }}</a>
+        {% endfor %}
+      
+    </div>
+    <div class="section--wrap flex align-end down">
+        <h2 class="section--wrap--title title-btn">タイトル</h2>
+        <a class="section--wrap--more">{{ object.title }}</a>
+    </div>
+    
+    <div class="report-details">
+        <div class="col-left">
+            <div class="report-gallery" id="report-gallery">
+                <div class="img-wrap">
+                    <img src="{{ object.image.url }}" alt="">
+                </div>                
+            </div>
+            <div class="gal-nav-wrap">
+                <div class="gal-nav">
+                  {% for object_pre in object.get_preview_image %}
+                    <img src="{{ object_pre.image.url }}" alt="">
+                  {% endfor %}
+                </div>
+                <div class="gal-details">
+                    <div class="gal-title-wrap">
+                        <h1 class="title-head">出品価格(税込)</h1>
+                        <h1 class="title-price">¥<span>{% if object.discount_price %}{{ object.discount_price }}{% else %}{{ object.price }}{% endif %}</span></h1>
+                    </div>
+                    {% if payment %}
+                    <button type="submit" id="download" class="add-cart"><i class="fas fa-download"></i>ダウンロード</button>
+                    {% else %}
+                    <a href="{{ object.get_add_to_cart_url }}" class="add-cart">カートに入れる</a>
+                    {% endif %}
+                </div>
+                <div class="col-left-details">
+                    <h2 class="details"><span>出品者：</span><span>{{ object.seller_name }}</span></h2>
+                    <h2><span>出品日：</span><span>{{ object.publication_date }}</span></h2>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-right">
+            <div class="row">
+                <h2 class="row-title">目次</h2>
+                <textarea class="row-content">{{ object.summary }}</textarea>
+            </div>
+            <div class="row">
+                <h2 class="row-title">本文</h2>
+                <textarea class="row-content">{{ object.description }}</textarea>
+            </div>
+        </div>
+    </div>
+  </div>
+</main>
+<div class="popup-gallery">
+    <div class="pop-modal">
+        <i class="fa fa-times close" aria-hidden="true"></i>  
+        <div class="popup preview-slide">      
+            
+            {% for img in image_list %}
+            <div class="img-wrap">
+                <img src="{{img}}" alt="">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block extra_scripts %}
+<script nonce="">
+    //Download in ItemDetail Page//
+    $('#download').click(function(){
+        var id = "{{ object.id }}";
+        //console.log(path);
+        //document.getElementById('my_iframe').src = path;
+        $.ajax({
+            url : '{% url 'core:download_result' %}',
+            data:{        
+                id: id,
+                csrfmiddlewaretoken: "{{ csrf_token }}"
+            },
+            type:'POST',
+            success:function(data){
+                var url = JSON.parse(data);
+                var name = 'download';
+                var link = document.createElement("a");
+                // If you don't know the name or want to use
+                // the webserver default set name = ''
+                link.setAttribute('download', name);
+                link.href = url.url;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            }
+        });
+        
+    });
+    //end//
+
+    //popup
+    $('document').ready(function(){
+        
+        const popup = document.querySelector( '.popup-gallery' );
+        const gallery = document.getElementById( 'report-gallery' );
+        gallery.addEventListener("click", function(e) { 
+            $('.preview-slide').resize();
+            popup.classList.add('active');
+            e.stopPropagation();
+              
+        });
+        $('.preview-slide').slick({           
+            slidesToShow: 1,  
+            slidesToScroll: 1, 
+            infinite: true,
+        });
+        $(".close").click(function(e) {
+            e.stopPropagation();
+            popup.classList.remove('active');
+        });        
+    })
+    
+
+    
+</script>
+{% endblock extra_scripts %}

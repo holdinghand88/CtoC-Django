@@ -1,0 +1,61 @@
+{% load cart_template_tags %}
+{% load category_template %}
+<header>
+  <div class="container">
+      <h1 class="brand"><a href="/">terrace</a></h1>
+      <div class="menu flex justify-between">
+          <div class="col flex">
+              <div class="custom-select">
+                <i class="fa-solid fa-caret-down"></i>
+                <p class="cats">カテゴリー</p>
+              
+              </div>
+              <div class="search-bar">
+                <form class="form-inline search-form" method="get" action="{% url 'core:advanced_search' %}">
+                  <div class="search-icon"><i class="fas fa-search"></i>
+                  <input type="search" class="search" placeholder="フリーワード検索" aria-label="Search" id="search_scalero" name="keyword">
+                  </div>
+                  <ul class="search-suggestion">
+                  </ul>
+                </form>                
+              </div>
+              
+          </div>
+          <div class="sp mob-menu"><i class="fa-solid fa-bars"></i></div>
+          
+          <div class="col mob-col">
+              <ul class="nav-lists">
+                {% if request.user.is_authenticated %}
+                  <li class="nav-list"><a href="{% url 'account_logout' %}" class="nav-link">ログアウト</a></li>
+                  <li class="nav-list"><a href="{% url 'core:order-summary' %}" class="nav-link">
+                    <span class="badge red z-depth-1 mr-1">
+                      {{ request.user|cart_item_count }}
+                    </span>
+                    <i class="fas fa-shopping-cart"></i>
+                    </a></li>
+                  <li class="nav-list"><a href="{% url 'core:mypage' %}" class="nav-link">マイページ</a></li>
+                {% else %}
+                  <li class="nav-list"><a href="{% url 'account_login' %}" class="nav-link">ログイン</a></li>
+                  <li class="nav-list"><a href="{% url 'account_signup' %}" class="nav-link">新規登録</a></li>
+                  
+                {% endif %}
+              </ul>
+          </div>     
+          
+          <ul class="float--menu">
+            {% for category in request.user|get_categories %}
+            <li class="float--list parent" id="category-{{category.id}}" data-target="{{ category.id }}">
+                <a href="" class="float--link">{{ category.name }}<i class="fa-solid fa-caret-right"></i></a>
+                {% for sub_category in category.id|get_sub_category %}
+                <ul class="sub-float--menu" id="sub-category-{{category.id}}">
+                  <li class="float--list">
+                      <a href="#" class="float--link">{{sub_category.name}}<i class="fa-solid fa-caret-right"></i></a>
+                  </li>
+                </ul>
+                {% endfor %}
+            </li>
+            {% endfor %}
+          </ul>
+      </div>
+  </div>
+</header>
