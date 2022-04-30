@@ -9,7 +9,7 @@ urlpatterns = [
     path('', include('core.urls', namespace='core'))
 ]
 
-if settings.DEBUG:
+if not settings.PRODUCTION:
     import debug_toolbar
     urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
     urlpatterns += static(settings.MEDIA_URL,
