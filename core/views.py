@@ -482,9 +482,9 @@ def download_result(request):
     id = request.POST.get('id')
     item = get_object_or_404(Item, id=id)
     if settings.PRODUCTION:
-        file_path = settings.HOST_NAME + item.pdf_file.url
-    else:
         file_path = settings.STATIC_URL + str(item.pdf_file)
+    else:
+        file_path = settings.HOST_NAME + item.pdf_file.url
 
     resp = HttpResponse(f'{{"url": "{file_path}"}}')
     resp.status_code = 200
