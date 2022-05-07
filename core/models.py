@@ -38,8 +38,8 @@ class SubCategories(models.Model):
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
-    price = models.FloatField()
-    discount_price = models.FloatField(blank=True, null=True)
+    price = models.IntegerField()
+    discount_price = models.IntegerField(blank=True, null=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     subcategory = models.ManyToManyField(SubCategories)
     seller_name = models.CharField(blank=True, null=True, max_length=256)

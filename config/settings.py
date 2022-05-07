@@ -124,7 +124,7 @@ def show_toolbar(request):
 
 if ENVIRONMENT == 'production':
     PRODUCTION = True
-    DEBUG = True
+    DEBUG = False
     ALLOWED_HOSTS = ['*', 'terraceatworld.net']
 
     AUTH_PASSWORD_VALIDATORS = [

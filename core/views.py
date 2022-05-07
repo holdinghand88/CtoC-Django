@@ -46,7 +46,7 @@ def is_valid_form(values):
 
 class PurchasedProductView(ListView):
     model = OrderItem
-    paginate_by = 10
+    paginate_by = 8
     template_name = "product_purchased.html"
 
     def get_queryset(self, **kwargs):
@@ -202,7 +202,7 @@ def paymentComplete(request):
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 10
+    paginate_by = 8
     template_name = "home.html"
 
     def get_queryset(self, **kwargs):
@@ -212,7 +212,7 @@ class HomeView(ListView):
 
 class ProductsListView(ListView):
     model = Item
-    paginate_by = 10
+    paginate_by = 8
     template_name = "products.html"
 
     def get_queryset(self, **kwargs):
@@ -481,7 +481,7 @@ def advanced_search(request):
 def download_result(request):
     id = request.POST.get('id')
     item = get_object_or_404(Item, id=id)
-    if settings.DEBUG:
+    if settings.PRODUCTION:
         file_path = settings.HOST_NAME + item.pdf_file.url
     else:
         file_path = settings.STATIC_URL + str(item.pdf_file)
@@ -490,4 +490,17 @@ def download_result(request):
     resp.status_code = 200
     resp.content_type = "application/json"
 
+    return resp
+
+
+def get_sub_category(request):
+    category_id = request.POST.get('id')
+    sub_category = SubCategories.objects.filter(category_id=category_id)
+    respond = {
+        'id': sub_category.id,
+        'name': sub_category.name
+    }
+    resp = HttpResponse(f'{{"respond": "{respond}"}}')
+    resp.status_code = 200
+    resp.content_type = "application/json"
     return resp
