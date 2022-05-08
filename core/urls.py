@@ -22,5 +22,6 @@ urlpatterns = [
     path('card-detail-completed/', cardupdatecompleted,
          name='carddetailcompleted'),
     path('close-account/', CloseAccount.as_view(), name='close-account'),
-    path('download/', download_result, name='download_result')
+    path('download/', download_result, name='download_result'),
+    path('get_category/', get_sub_category, name='get_sub_category')
 ]

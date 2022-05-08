@@ -495,12 +495,14 @@ def download_result(request):
 
 def get_sub_category(request):
     category_id = request.POST.get('id')
-    sub_category = SubCategories.objects.filter(category_id=category_id)
-    respond = {
-        'id': sub_category.id,
-        'name': sub_category.name
-    }
-    resp = HttpResponse(f'{{"respond": "{respond}"}}')
-    resp.status_code = 200
-    resp.content_type = "application/json"
-    return resp
+    sub_categories = SubCategories.objects.filter(category_id=category_id)
+    all_respond = []
+    for sub_cat in sub_categories:
+        respond = {
+            'id': sub_cat.id,
+            'name': sub_cat.name
+        }
+        all_respond.append(respond)
+    print(all_respond)
+
+    return JsonResponse({'success': True, 'responds': all_respond})

@@ -45,17 +45,15 @@
           <ul class="float--menu">
             {% for category in request.user|get_categories %}
             <li class="float--list parent" id="category-{{category.id}}" data-target="{{ category.id }}">
-                <a href="" class="float--link">{{ category.name }}<i class="fa-solid fa-caret-right"></i></a>
-                {% for sub_category in category.id|get_sub_category %}
-                <ul class="sub-float--menu" id="sub-category-{{category.id}}">
-                  <li class="float--list">
-                      <a href="#" class="float--link">{{sub_category.name}}<i class="fa-solid fa-caret-right"></i></a>
-                  </li>
-                </ul>
-                {% endfor %}
+              <a href="/products?category_id={{category.id}}" class="float--link">{{ category.name }}<i class="fa-solid fa-caret-right"></i></a>
             </li>
             {% endfor %}
           </ul>
+          <ul class="sub-float--menu">
+            <li class="float--list">
+              <a href="#" class="float--link"></a>
+            </li>
+          </ul>   
       </div>
   </div>
 </header>

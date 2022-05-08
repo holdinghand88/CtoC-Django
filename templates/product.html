@@ -4,7 +4,7 @@
 <main class="mt-5 pt-4">
   <div class="container m-fluid mt-3">
     <div class="section--wrap flex align-end">
-        <h2 class="section--wrap--title title-btn">カテゴリ</h2>
+        <h2 class="section--wrap--title title-btn border-bottom">カテゴリ</h2>
         <a href="/products?category_id={{object.category.id}}" class="section--wrap--more">{{ object.category.name }}</a>
         {% for sub_category in object.subcategory.all %}
         <a href="/products?subcategory_id={{sub_category.id}}" class="section--wrap--more">/ {{ sub_category.name }}</a>
