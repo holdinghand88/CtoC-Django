@@ -2,6 +2,7 @@ header {
   background-image: linear-gradient(145deg, #fff 10%, var(--orange) 30%, var(--orange) 100%);
   padding-top: 30px;
   padding-bottom: 30px;
+  border-bottom: 0.5px #fff solid;
 }
 
 header .brand a {
@@ -191,7 +192,7 @@ header .sub-float--menu {
   position: absolute;
   top: calc( 100% + 31px);
   left: 181px;
-  width: 180px;
+  min-width: 180px;
   min-height: 350px;
   background-color: #fff;
   border-left: 1px solid var(--orange);
