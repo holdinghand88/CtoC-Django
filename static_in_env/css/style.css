@@ -163,6 +163,8 @@ header .float--menu {
   -webkit-transition: 0.5s linear all;
   transition: 0.5s linear all;
   box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 4px 12px rgb(0 0 0 / 20%);
+  z-index: 999;
+
 }
 
 header .float--menu.active {
@@ -201,6 +203,7 @@ header .sub-float--menu {
   padding-top: 10px;
   display: none;
   box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 4px 12px rgb(0 0 0 / 20%);
+  z-index: 999;
 }
 
 header .sub-float--menu.active {
@@ -290,6 +293,8 @@ header .sub-float--menu .float--list .float--link {
   header .menu .search-bar input {
     width: 100%;
     font-size: 14px;
+    margin: 0;
+    padding: 0 5px;
   }
   header .menu .mob-menu {
     color: #fff;
@@ -333,6 +338,12 @@ header .sub-float--menu .float--list .float--link {
   header .menu .mob-col .nav-lists.active .nav-list a {
     background-color: transparent;
     color: #fff;
+  }
+  header .float--menu{
+    top: calc( 100% + 0px);
+  }
+  header .sub-float--menu{
+    top: calc( 100% + 0px);
   }
 }
 
