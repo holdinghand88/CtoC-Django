@@ -208,7 +208,7 @@ header .sub-float--menu {
 
 header .sub-float--menu.active {
   /* left: 100%; */
-  display: flex;
+  display: block;
 }
 
 header .sub-float--menu .float--list {
