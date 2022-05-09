@@ -1899,17 +1899,7 @@ form .login-btn {
   margin-bottom: 20px;
 }
 
-.payment-box .payment-form .field-group.third-width {
-  width: 60%;
-}
-
-.payment-box .payment-form .field-group label {
-  font-size: 20px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-}
-
-.payment-box .payment-form .field-group .field-input {
+.payment-box form.payment-form .field-group .field-input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1922,9 +1912,14 @@ form .login-btn {
   text-align: center;
   border: 0;
 }
+.payment-box .payment-form .field-group.third-width {
+  width: 60%;
+}
 
-.payment-box .payment-form .field-group .field-input:focus {
-  outline: none;
+.payment-box .payment-form .field-group label {
+  font-size: 20px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 .payment-box .payment-form .field-group select {
@@ -1959,6 +1954,85 @@ form .login-btn {
   text-align: center;
   margin-top: 50px;
 }
+
+@media (max-width: 767px) {
+  .payment-box-title.change {
+    color: var(--orange);
+    font-size: 15px;
+    line-height: 1.4em;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0px;
+    margin-top: 50px;
+  }
+  .payment-box {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+  }
+  .payment-box .payment-box-title {
+    font-size: 18px;
+  }
+  .payment-box .payment-form {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .payment-box .payment-form .field-group {
+    -webkit-box-orient: vertical;
+    /* -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; */
+    background-color: transparent;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .payment-box .payment-form .field-group div{
+    border: 1px solid #fff;
+    background: #fff;
+  }
+  .payment-box .payment-form .field-group label {
+    color: #fff;
+    text-align: left;
+    font-size: 14px;
+  }
+  .payment-box .payment-form .group-wrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .payment-box .payment-form .group-wrap .pay-btn {
+    width: 100%;
+    border-radius: 6px;
+    border-width: 2px;
+    font-size: 15px;
+  }
+  .payment-box .all-products {
+    font-size: 15px;
+    padding: 0;
+    width: 100%;
+    height: 45px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .box-title {
+    font-size: 15px;
+  }
+
+}
+/*Payment page*/
 
 /* Pagination PART */
 .pagination{
