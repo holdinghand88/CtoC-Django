@@ -54,6 +54,7 @@
         customSelect.addEventListener( 'click', function(e){
           e.stopPropagation();
           categorylist.classList.toggle('active');
+          ul_html.removeClass('active');
         });
         let ul_html = $('header .sub-float--menu');
         $("[data-target]").mouseover(function(event){
@@ -87,8 +88,9 @@
           });
           
         })
-        $(".float--menu").mouseout(function(event){
-          ul_html.removeClass('active');
+        $(".category-card").mouseout(function(event){
+          //console.log("dd");
+          //ul_html.removeClass('active');
         })
 
         $("#close").click(function(){

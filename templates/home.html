@@ -45,7 +45,11 @@
             </div>
             <div class="data-wrap">
               <h3 class="data--title">カテゴリ</h3>
-              <h3 class="data--content">{{ item.get_category_display }}</h3>
+              <h3 class="data--content">              
+              {% for sub_category in item.subcategory.all %}
+              <span class="category-split">{{ sub_category.name }}<small >/</small></span>
+              {% endfor %}
+            </h3>
             </div>
             <div class="data-wrap">
               <h3 class="data--title">{{ item.title }}</h3>
@@ -101,12 +105,12 @@
                         <div class="list--content full-width">
                             <h2 class="list--content--title text-center">
                                 徹底したクオリティ
-                                <a class="list--content--btn sp m-inline-block">販売者申請はこちら</a>
+                                <a href="#" class="list--content--btn sp m-inline-block">販売者申請はこちら</a>
                             </h2>
                             <p class="list--content--para flex justify-center align-start flex-dir-col">レポートの出品者は承認制を取っており、審査を突破した優秀な方のみです。<br>
                                 また出品されるレポートは Terrace運営が全てチェックを行い、<br>
                                 承認されたレポートのみ販売されます
-                                <a class="list--content--btn pc">販売者申請はこちら</a>
+                                <a href="#"  class="list--content--btn pc">販売者申請はこちら</a>
                             </p>
                         </div>
                         <img src="{% static 'images/mob-feature-2.png' %}" alt="" class="list--thumb">
@@ -117,10 +121,10 @@
                         <div class="list--content full-width">
                             <h2 class="list--content--title text-center">
                                 特別オファー
-                                <a class="list--content--btn sp m-inline-block">特別オファー申請はこちら</a>
+                                <a href="#" class="list--content--btn sp m-inline-block">特別オファー申請はこちら</a>
                             </h2>
                             <p class="list--content--para flex justify-center align-start flex-dir-col">「このタイトルでこの人にレポート作成を依頼したい！」を実現します。
-                                <a class="list--content--btn pc right">特別オファー申請はこちら</a>
+                                <a href="#" class="list--content--btn pc right">特別オファー申請はこちら</a>
                             </p>
                         </div>
                     </li>

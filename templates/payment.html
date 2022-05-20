@@ -57,7 +57,7 @@
       {% csrf_token %}          
         <div class="field-group">
             <label for="price">お支払い合計金額(税込)</label>
-            <input type="text" id="price" class="field-input" value="¥{{ order.get_total }}-">
+            <input type="text" disabled id="price" class="field-input" value="¥{{ order.get_total }}-">
         </div>
         <div class="field-group">
             <label for="phone">カード番号</label>

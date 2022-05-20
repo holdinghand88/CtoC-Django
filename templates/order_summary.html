@@ -14,7 +14,7 @@
                 <p class="title">税込合計<br>
                     （{{ request.user|cart_item_count }}商品）</p>
                 <h1 class="payment-amount">¥{{ object.get_total }}-</h1>
-                <a href="#" class="payment-btn">支払いへ進む</a>
+                <a href="/payment/stripe/" class="payment-btn">支払いへ進む</a>
             </div>
         </div>
 
@@ -66,7 +66,7 @@
             {% if object.get_total %}
             <div class="cart-payment-detail-box radius-orange-box pc">
                 <h1 class="total-item">税込合計　(<span class="ïtem">{{ request.user|cart_item_count }}商品</span>)</h1>
-                <input type="text" class="price" value="¥{{ object.get_total }}-">
+                <input type="text" disabled class="price" value="¥{{ object.get_total }}-">
                 <a href="/payment/stripe/" class="procede-btn">お支払い手続きへ進む</a>
             </div>
             {% endif %}

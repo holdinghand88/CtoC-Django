@@ -708,7 +708,9 @@ img {
   font-weight: normal;
   margin-left: 10px;
 }
-
+.report-wrap .data-wrap .data--content .category-split:last-child small{
+  display: none;
+}
 .reports .report .selling-info {
   font-size: 18px;
   color: var(--orange);

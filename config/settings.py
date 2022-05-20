@@ -108,6 +108,7 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -125,7 +126,7 @@ def show_toolbar(request):
 if ENVIRONMENT == 'production':
     PRODUCTION = True
     DEBUG = False
-    ALLOWED_HOSTS = ['*', 'terraceatworld.net']
+    ALLOWED_HOSTS = ['*']
 
     AUTH_PASSWORD_VALIDATORS = [
         {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

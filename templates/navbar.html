@@ -41,19 +41,20 @@
                 {% endif %}
               </ul>
           </div>     
-          
-          <ul class="float--menu">
-            {% for category in request.user|get_categories %}
-            <li class="float--list parent" id="category-{{category.id}}" data-target="{{ category.id }}">
-              <a href="/products?category_id={{category.id}}" class="float--link">{{ category.name }}<i class="fa-solid fa-caret-right"></i></a>
-            </li>
-            {% endfor %}
-          </ul>
-          <ul class="sub-float--menu">
-            <li class="float--list">
-              <a href="#" class="float--link"></a>
-            </li>
-          </ul>   
+          <div class="category-card">
+            <ul class="float--menu">
+              {% for category in request.user|get_categories %}
+              <li class="float--list parent" id="category-{{category.id}}" data-target="{{ category.id }}">
+                <a href="/products?category_id={{category.id}}" class="float--link">{{ category.name }}<i class="fa-solid fa-caret-right"></i></a>
+              </li>
+              {% endfor %}
+            </ul>
+            <ul class="sub-float--menu">
+              <li class="float--list">
+                <a href="#" class="float--link"></a>
+              </li>
+            </ul>
+          </div>  
       </div>
   </div>
 </header>
