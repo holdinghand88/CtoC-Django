@@ -90,16 +90,41 @@
             type:'POST',
             success:function(data){
                 var url = JSON.parse(data);
-                var name = 'download';
-                var link = document.createElement("a");
+                var filename = 'download.pdf';
+                fetch(url.url)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        const objectUrl = URL.createObjectURL(blob);
+                        const link = document.createElement("a");
+                        link.href = URL.createObjectURL(blob);
+                        link.download = filename;
+                        link.style = "display: none";
+                        document.body.appendChild(link);
+                        console.log(link);
+                        link.click();
+                        URL.revokeObjectURL(objectUrl);
+                        document.body.removeChild(link);
+                    })
+                    .catch(console.error);
                 
-                link.setAttribute('download', '');
-                link.href = url.url;                
-                document.body.appendChild(link);
-                console.log(link);
-                link.click();
-                document.body.removeChild(link);
-                link.remove();
+                /*const arrayBuffer  = await instance.exportPDF({incremental: true});
+                const blob = new Blob([arrayBuffer ], { type: 'application/pdf' });	
+                if (window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob, fileName);
+                } else {
+                    const objectUrl = URL.createObjectURL(blob);
+                    var link = document.createElement("a");                
+                    link.setAttribute('download', name);
+                    link.style = "display: none";
+                    link.href = objectUrl;                
+                    document.body.appendChild(link);
+                    console.log(link);
+                    link.click();
+                    URL.revokeObjectURL(objectUrl);
+                    document.body.removeChild(link);
+                    
+                }*/
+                
             }
         });
         
