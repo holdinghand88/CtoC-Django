@@ -94,10 +94,11 @@
                 var link = document.createElement("a");
                 
                 link.setAttribute('download', '');
-                link.href = url.url;                
+                link.href = url.url + '/?data:application/pdf;Content-Disposition: attachment;';                
                 document.body.appendChild(link);
                 console.log(link);
                 link.click();
+                document.body.removeChild(link);
                 link.remove();
             }
         });
