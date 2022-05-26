@@ -92,8 +92,7 @@
                 var url = JSON.parse(data);
                 var name = 'download';
                 var link = document.createElement("a");
-                // If you don't know the name or want to use
-                // the webserver default set name = ''
+                
                 link.setAttribute('download', '');
                 link.href = url.url;                
                 document.body.appendChild(link);
