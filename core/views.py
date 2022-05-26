@@ -480,6 +480,7 @@ def advanced_search(request):
 
 def download_result(request):
     id = request.POST.get('id')
+    filename = 'download'
     item = get_object_or_404(Item, id=id)
     if settings.PRODUCTION:
         file_path = settings.STATIC_URL + str(item.pdf_file)
@@ -487,6 +488,7 @@ def download_result(request):
         file_path = settings.HOST_NAME + item.pdf_file.url
 
     resp = HttpResponse(f'{{"url": "{file_path}"}}')
+    resp['Content-Disposition'] = 'attachment; filename=%s' % filename
     resp.status_code = 200
     resp.content_type = "application/json"
 

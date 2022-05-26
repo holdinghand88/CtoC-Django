@@ -94,7 +94,7 @@
                 var link = document.createElement("a");
                 
                 link.setAttribute('download', '');
-                link.href = url.url + '/?content-disposition:attachment;';                
+                link.href = url.url;                
                 document.body.appendChild(link);
                 console.log(link);
                 link.click();
