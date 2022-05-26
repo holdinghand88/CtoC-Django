@@ -96,7 +96,7 @@
                 // the webserver default set name = ''
                 link.setAttribute('download', name);
                 link.href = url.url;
-                link.target = '_blank';
+                link.target = '_parent';
                 document.body.appendChild(link);
                 console.log(link);
                 link.click();
