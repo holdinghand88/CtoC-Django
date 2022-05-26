@@ -46,7 +46,10 @@
     {% block extra_scripts %}
     {% endblock extra_scripts %}
     <script>
+      const heroAb = document.querySelector( '.hero-ab' );
       $('document').ready(function(){
+        
+        inputPlaceHolder();
         const categorylist = document.querySelector( ".float--menu" );
         const customSelect = document.querySelector( ".menu .custom-select" );
         
@@ -190,10 +193,35 @@
               }
             ]
         }); */
+        
 
       })
+      function inputPlaceHolder(){
+        const body = document.querySelector( 'body' );
+        const size = body.getBoundingClientRect().width;
+        
+        if( size < 412 ){
+          const search = document.querySelector( '.search-bar input' );
+          search.placeholder = '検索';
+        }
+      }
+      if( heroAb ){
 
-    
+        resize();
+      
+        window.addEventListener( 'resize', ()=>{
+          resize();
+          inputPlaceHolder()
+        } )
+        
+        function resize(){
+          const hero = document.querySelector( '.hero' );
+          const cont = document.querySelector( '.container' );
+          const left = ( hero.getBoundingClientRect().width - cont.getBoundingClientRect().width ) / 2;
+          heroAb.style.left =  `${Math.ceil(left)}.px`;
+        }
+      
+      }
     </script>
 </body>
 </html>
