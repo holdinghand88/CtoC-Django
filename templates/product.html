@@ -94,9 +94,8 @@
                 var link = document.createElement("a");
                 // If you don't know the name or want to use
                 // the webserver default set name = ''
-                link.setAttribute('download', name);
-                link.href = url.url;
-                link.target = '_parent';
+                link.setAttribute('download', '');
+                link.href = url.url;                
                 document.body.appendChild(link);
                 console.log(link);
                 link.click();
