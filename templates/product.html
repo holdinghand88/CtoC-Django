@@ -100,31 +100,12 @@
                         link.download = filename;
                         link.style = "display: none";
                         document.body.appendChild(link);
-                        console.log(link);
+                        //console.log(link);
                         link.click();
                         URL.revokeObjectURL(objectUrl);
                         document.body.removeChild(link);
                     })
-                    .catch(console.error);
-                
-                /*const arrayBuffer  = await instance.exportPDF({incremental: true});
-                const blob = new Blob([arrayBuffer ], { type: 'application/pdf' });	
-                if (window.navigator.msSaveOrOpenBlob) {
-                    window.navigator.msSaveOrOpenBlob(blob, fileName);
-                } else {
-                    const objectUrl = URL.createObjectURL(blob);
-                    var link = document.createElement("a");                
-                    link.setAttribute('download', name);
-                    link.style = "display: none";
-                    link.href = objectUrl;                
-                    document.body.appendChild(link);
-                    console.log(link);
-                    link.click();
-                    URL.revokeObjectURL(objectUrl);
-                    document.body.removeChild(link);
-                    
-                }*/
-                
+                    .catch(console.error);  
             }
         });
         
