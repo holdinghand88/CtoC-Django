@@ -348,20 +348,20 @@ class CloseAccount(LoginRequiredMixin, View):
         return render(self.request, "close_account.html", {'form': form})
 
     def post(self, request, *args, **kwargs):
-        form = UserDeleteForm(request.POST)
-        if form.is_valid():
-            user = request.user
-            confirm_password = form.cleaned_data.get('password')
-            if not check_password(confirm_password, user.password):
-                messages.success(
-                    request, '申し訳なく存じますが、パスワードが間違っています。ご確認お願いします。')
-                return render(self.request, "close_account.html", {'form': form})
-            else:
-                logout(request)
-                # user.delete()
-                messages.success(request, 'アカウントが削除されました。')
-                return redirect("/")
-        return render(self.request, "close_account.html", {'form': form})
+        #form = UserDeleteForm(request.POST)
+        # if form.is_valid():
+        user = request.user
+        #    confirm_password = form.cleaned_data.get('password')
+        #    if not check_password(confirm_password, user.password):
+        #        messages.success(
+        #            request, '申し訳なく存じますが、パスワードが間違っています。ご確認お願いします。')
+        #        return render(self.request, "close_account.html", {'form': form})
+        #    else:
+        logout(request)
+        user.delete()
+        messages.success(request, 'アカウントが削除されました。')
+        return redirect("/")
+        # return render(self.request, "close_account.html", {'form': form})
 
 
 @login_required
@@ -488,7 +488,7 @@ def download_result(request):
         file_path = settings.HOST_NAME + item.pdf_file.url
 
     resp = HttpResponse(f'{{"url": "{file_path}"}}')
-    resp['Content-Disposition'] = 'attachment; filename=%s' % filename
+    #resp['Content-Disposition'] = 'attachment; filename=%s' % filename
     resp.status_code = 200
     resp.content_type = "application/json"
 
