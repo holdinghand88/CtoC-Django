@@ -1091,8 +1091,16 @@ form .form-input-group label {
   line-height: 30px;
   color: var(--orange);
 }
+
+form.login .alert{
+  color: #ff2300;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 18px;
+}
 form.login p{
   color: #ff2300;
+  font-size: 18px;
 }
 form .form-input-group input {
   width: 100%;
